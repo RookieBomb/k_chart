@@ -174,7 +174,7 @@ class _KChartWidgetState extends State<KChartWidget>
             _onDragChanged(true);
           },
           onHorizontalDragUpdate: (details) {
-            if (isScale || isLongPress) return;
+            if (isScale) return;
             mScrollX = ((details.primaryDelta ?? 0) / mScaleX + mScrollX)
                 .clamp(0.0, ChartPainter.maxScrollX)
                 .toDouble();
@@ -197,11 +197,11 @@ class _KChartWidgetState extends State<KChartWidget>
             isScale = false;
             _lastScale = mScaleX;
           },
-          onLongPressStart: (details) {
+          onTapDown: (details) {
             isOnTap = false;
             isLongPress = true;
             if (mSelectX != details.globalPosition.dx) {
-              mSelectX = details.globalPosition.dx;
+              mSelectX = details.globalPosition.dx - 20;
               notifyChanged();
             }
           },

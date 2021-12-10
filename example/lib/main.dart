@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Stack(children: <Widget>[
           Container(
             height: 450,
-            width: double.infinity,
+            width: 300,
             child: KChartWidget(
               datas,
               chartStyle,
