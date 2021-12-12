@@ -198,11 +198,17 @@ class _KChartWidgetState extends State<KChartWidget>
             _lastScale = mScaleX;
           },
           onTapDown: (details) {
-            isOnTap = false;
-            isLongPress = true;
-            if (mSelectX != details.globalPosition.dx) {
-              mSelectX = details.globalPosition.dx - 20;
+            if(!isOnTap && isLongPress) {
+              isLongPress = false;
+              mInfoWindowStream?.sink.add(null);
               notifyChanged();
+            } else {
+              isOnTap = false;
+              isLongPress = true;
+              if (mSelectX != details.globalPosition.dx) {
+                mSelectX = details.globalPosition.dx - 20;
+                notifyChanged();
+              }
             }
           },
           onLongPressMoveUpdate: (details) {
